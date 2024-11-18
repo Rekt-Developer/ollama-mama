@@ -1,20 +1,17 @@
 import express from 'express';
 import { CohereClient } from 'cohere-ai';
 import cors from 'cors';
-import dotenv from 'dotenv';
-
-// Load environment variables from .env file
-dotenv.config();
+import { config } from '../config.js';  // Import from the root config.js
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Initialize Cohere client with your API key from .env file
-const client = new CohereClient({ token: process.env.COHERE_API_KEY });
+// Initialize Cohere client with the API key from config.js
+const client = new CohereClient({ token: config.COHERE_API_KEY });
 
 // Middleware to parse JSON request bodies and handle CORS
 app.use(express.json());
-app.use(cors());  // Allow requests from different domains
+app.use(cors());
 
 // API endpoint to handle chat interactions
 app.post('/api/chat', async (req, res) => {
@@ -38,7 +35,7 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-// Serve static files for frontend (optional for Vercel and GitHub Pages)
+// Serve static files for the frontend (public folder)
 app.use(express.static('public'));
 
 // Start the server
