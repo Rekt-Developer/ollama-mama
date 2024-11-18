@@ -1,50 +1,44 @@
+// script.js
 document.getElementById('send-btn').addEventListener('click', async () => {
   const userInput = document.getElementById('user-input').value.trim();
-  if (!userInput) return;
 
-  // Add user message to the chat box
-  addMessage('USER', userInput);
-  document.getElementById('user-input').value = '';  // Clear input field
+  if (userInput === '') return;
 
-  // Fetch AI response
+  // Display the user message
+  appendMessage(userInput, 'user-message');
+
+  // Clear input field
+  document.getElementById('user-input').value = '';
+
   try {
     const response = await fetch('/api/chat', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        message: userInput,
-        chatHistory: getChatHistory(),
-      }),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ message: userInput }),
     });
 
     const data = await response.json();
-    if (data.error) {
-      addMessage('AI', `Error: ${data.error}`);
+
+    if (data.response) {
+      appendMessage(data.response, 'ai-message');
     } else {
-      addMessage('AI', data.response);
+      appendMessage("Sorry, there was an error.", 'ai-message');
     }
   } catch (error) {
-    console.error('Error:', error);
-    addMessage('AI', 'Something went wrong. Please try again.');
+    console.error('Error fetching response:', error);
+    appendMessage("Sorry, there was an error.", 'ai-message');
   }
 });
 
-// Add a new message to the chat
-function addMessage(role, message) {
+function appendMessage(message, messageType) {
   const chatBox = document.getElementById('chat-box');
-  const messageDiv = document.createElement('div');
-  messageDiv.classList.add(role.toLowerCase());
-  messageDiv.innerHTML = `<strong>${role}:</strong> ${message}`;
-  chatBox.appendChild(messageDiv);
-  chatBox.scrollTop = chatBox.scrollHeight;  // Auto-scroll to the latest message
-}
+  const messageElement = document.createElement('div');
+  messageElement.classList.add('message', messageType);
+  messageElement.textContent = message;
+  chatBox.appendChild(messageElement);
 
-// Get the entire chat history
-function getChatHistory() {
-  const chatBox = document.getElementById('chat-box');
-  const messages = Array.from(chatBox.querySelectorAll('div'));
-  return messages.map(msg => ({
-    role: msg.classList.contains('user') ? 'USER' : 'AI',
-    message: msg.innerText.split(': ')[1]
-  }));
+  // Scroll to the bottom
+  chatBox.scrollTop = chatBox.scrollHeight;
 }
