@@ -3,21 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="AI-powered chat with Cohere API">
-  <title>AI Chat with Cohere</title>
-  <link rel="stylesheet" href="style.css">
-  <script defer src="scripts.js"></script>
+  <title>Ollama Mama - AI Chat</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="chat-container">
-    <header class="chat-header">
-      <h1>AI Chat</h1>
-    </header>
-    <main id="chat-box" class="chat-box"></main>
-    <div class="input-container">
-      <input type="text" id="user-input" class="user-input" placeholder="Type your message..." autofocus />
-      <button id="send-btn" class="send-btn">Send</button>
+    <div class="chat-header">
+      <h1>Ollama Mama AI</h1>
+      <p>Ask anything to the AI below!</p>
+    </div>
+    <div class="chat-box" id="chat-box">
+      <!-- Chat messages will be appended here -->
+    </div>
+    <div class="chat-input-container">
+      <textarea id="user-input" placeholder="Type your message..."></textarea>
+      <button id="send-btn">Send</button>
     </div>
   </div>
+  
+  <script src="script.js"></script>
 </body>
 </html>
