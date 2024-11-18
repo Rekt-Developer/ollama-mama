@@ -1,18 +1,22 @@
 import express from 'express';
 import { CohereClient } from 'cohere-ai';
-import cors from 'cors';  // CORS for cross-origin requests
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config();
 
 const app = express();
 const port = process.env.PORT || 3000;
 
-// Initialize Cohere client with your API key
-const client = new CohereClient({ token: 'YOUR_API_KEY' });
+// Initialize Cohere client with your API key from .env file
+const client = new CohereClient({ token: process.env.COHERE_API_KEY });
 
 // Middleware to parse JSON request bodies and handle CORS
 app.use(express.json());
 app.use(cors());  // Allow requests from different domains
 
-// Endpoint to handle chat interactions
+// API endpoint to handle chat interactions
 app.post('/api/chat', async (req, res) => {
   const { message, chatHistory } = req.body;
   if (!message) {
