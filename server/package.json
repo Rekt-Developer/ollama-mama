@@ -1,24 +1,27 @@
 {
   "name": "ollama-mama",
   "version": "1.0.0",
-  "description": "AI-powered chat app with Cohere API",
-  "main": "index.js",
+  "description": "AI-powered chatbot using Cohere API",
+  "main": "server/index.js",
   "scripts": {
     "start": "node server/index.js",
     "dev": "nodemon server/index.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
     "cohere-ai": "^1.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^10.0.0"
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.7"
   },
   "engines": {
     "node": ">=14.0.0"
   },
-  "author": "© Likhon Sheikh",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rekt-Developer/ollama-mama.git"
+  },
+  "author": "Rekt-Developer",
   "license": "MIT"
 }
