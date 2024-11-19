@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta property="og:title" content="Ollama Mama - AI Chat">
+  <meta property="og:description" content="Interactive AI-powered chat with Cohere. Ask your questions now!">
+  <meta property="og:image" content="https://your-image-url.jpg">
+  <meta property="og:site_name" content="Ollama Mama">
+  <meta property="og:url" content="https://your-website-url.com">
+  
+  <meta name="twitter:title" content="Ollama Mama - AI Chat">
+  <meta name="twitter:description" content="Chat with AI powered by Cohere. Ask your questions now!">
+  <meta name="twitter:image" content="https://your-image-url.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+
   <title>Ollama Mama - AI Chat</title>
-  <link rel="stylesheet" href="styles.css">
+
+  <!-- Include external CSS -->
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="chat-container">
-    <div class="chat-header">
-      <h1>Ollama Mama AI</h1>
-      <p>Ask anything to the AI below!</p>
-    </div>
-    <div class="chat-box" id="chat-box">
-      <!-- Chat messages will be appended here -->
-    </div>
-    <div class="chat-input-container">
-      <textarea id="user-input" placeholder="Type your message..."></textarea>
-      <button id="send-btn">Send</button>
-    </div>
-  </div>
-  
+
+  <main class="chat-container">
+    <div id="chat-box" class="chat-box"></div>
+    <textarea id="user-input" class="user-input" placeholder="Type your message..." rows="4"></textarea>
+    <button id="send-btn" class="send-btn">Send</button>
+  </main>
+
   <script src="script.js"></script>
 </body>
 </html>
